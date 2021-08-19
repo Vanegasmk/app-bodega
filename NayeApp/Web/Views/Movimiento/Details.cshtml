@@ -1,0 +1,90 @@
+﻿@model Infraestructure.Models.Movimientos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Movimiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.Precio)
+        </dt>
+        <dd>
+            ₡ @Html.DisplayFor(model => model.Producto.Precio)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_TipoMovimiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoMovimiento.Tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.Proveedor)es
+        </dt>
+
+        @foreach (var c in Model.Producto.Proveedor)
+        {
+
+            <li>
+                @c.Nombre
+            </li>
+
+        }
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Id_Usuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Creado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            ₡ @Html.DisplayFor(model => model.Total)
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" }) 
+    @Html.ActionLink("Atrás", "Index", null, new { @class = "btn btn-primary" })
+</p>

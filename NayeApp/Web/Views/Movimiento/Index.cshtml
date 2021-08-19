@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Infraestructure.Models.Movimientos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<h2>Movimientos</h2>
+
+
+<div class="d-grid gap-2 d-md-block">
+    <a href="@Url.Action("Create","Movimiento")" class="btn btn-primary">Crear nuevo movimiento</a>
+</div>
+
+
+<table class="table" width="100%">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Precio)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_TipoMovimiento)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Proveedor)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Usuario)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Creado)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Producto.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad)
+        </td>
+        <td>
+            ₡@Html.DisplayFor(modelItem => item.Producto.Precio)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoMovimiento.Tipo)
+        </td>
+
+        <td>
+            @foreach (var c in item.Producto.Proveedor)
+            {
+
+                <li>
+                    @c.Nombre
+                </li>
+
+            }
+        </td>
+
+        <td>
+             @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+        </td>
+
+        <td>
+             @Html.DisplayFor(modelItem => item.Creado)
+        </td>
+
+        <td>
+            ₡ @Html.DisplayFor(modelItem => item.Total)
+        </td>
+
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Detalle", "Details", new { id=item.Id }, new { @class = "btn btn-secondary" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id }, new { onclick = "return confirm('Quieres eliminar el registro?');", @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

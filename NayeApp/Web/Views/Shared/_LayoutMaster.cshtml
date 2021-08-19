@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - Panel</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    @{
+        string nombre = "";
+        string email = "Perfil";
+        Infraestructure.Models.Usuario oUsuario;
+
+        if (Session["User"] != null)
+        {
+            oUsuario = (Infraestructure.Models.Usuario)Session["User"];
+
+            if (oUsuario != null)
+            {
+                nombre = $"{oUsuario.Nombre}{oUsuario.Apellido}";
+                email = oUsuario.Correo;
+            }
+        }
+    }
+
+    <style>
+        .color {
+            background-color: #3a5b63;
+        }
+
+        .btn-primary,
+        .btn-primary:hover,
+        .btn-primary:active,
+        .btn-primary:visited,
+        .btn-primary:focus {
+            background-color: #80bbd2;
+            border-color: #80bbd2;
+        }
+
+        .btn-danger,
+        .btn-danger:hover,
+        .btn-danger:active,
+        .btn-danger:visited,
+        .btn-danger:focus {
+            background-color: #e84848;
+            border-color: #e84848;
+        }
+
+
+    </style>
+
+  
+
+
+    @if (Session["User"] != null)
+    {
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end" id="sidebar-wrapper" style="background-color: #3a5b63;">
+                <div class="sidebar-heading border-bottom text-light" style="background-color: #3a5b63;">Neye Store</div>
+                <div class="list-group list-group-flush">
+                    @{
+                        oUsuario = (Infraestructure.Models.Usuario)Session["User"];
+
+                        if (oUsuario.Tipo == 1)
+                        {
+                            @Html.ActionLink("Panel de Control", "Index", "Home", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Productos", "Index", "Producto", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Usuarios", "Index", "Usuario", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Proveedores", "Index", "Proveedor", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Movimientos", "Index", "Movimiento", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Categorías", "Index", "Categoria", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Tipo Movimientos", "Index", "TipoMovimiento", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                            @Html.ActionLink("Bodegas", "Index", "Bodega", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light text-light" })
+                            @Html.ActionLink("Contactos", "Index", "Contacto", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light text-light" })
+                            @Html.ActionLink("Reportes", "Index", "Reporte", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 color text-light" })
+                        }
+                        else if (oUsuario.Tipo == 2)
+                        {
+                            @Html.ActionLink("Panel de Control", "Index", "Home", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Productos", "Index", "Producto", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Proveedores", "Index", "Proveedor", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Movimientos", "Index", "Movimiento", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Categorías", "Index", "Categoria", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Tipo Movimientos", "Index", "TipoMovimiento", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Bodegas", "Index", "Bodega", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Contactos", "Index", "Contacto", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                            @Html.ActionLink("Reportes", "Index", "Reporte", null, new { @class = "list-group-item list-group-item-action list-group-item-light p-3 text-light color" })
+                        }
+                        else
+                        {
+                            Response.Redirect("~/Login/NoAutorizado");
+                        }
+                    }
+
+                </div>
+            </div>
+            <!-- Page content wrapper-->
+            <div>
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #84acb6;">
+                    <div class="container-fluid">
+                        <button class="btn btn-primary" id="sidebarToggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido @email</a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        @Html.ActionLink("Cerrar Sesión", "Salir", "Login", null, new { @class = "dropdown-item" })
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <!-- Page content-->
+
+                <div class="container" style="background-color: #e4e8e8; ">
+                    <div class="row justify-content-center justify-content-md-start" style="background-color: #e4e8e8;">
+                        @RenderBody()
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    }
+    else
+    {
+        Response.Redirect("~/Login/Index");
+    }
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bundles/sweetalert")
+    @Scripts.Render("~/bundles/jqueryajax")
+    @RenderSection("scripts", required: false)
+    @if (ViewBag.NotificationMessage != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.NotificationMessage)
+        </script>
+    }
+
+</body>
+</html>

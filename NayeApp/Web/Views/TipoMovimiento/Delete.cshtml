@@ -1,0 +1,41 @@
+﻿@model Infraestructure.Models.TipoMovimiento
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+<h3>Quieres eliminarlo?</h3>
+<div>
+    <h4>Tipo Movimiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteTipoMovimiento", "TipoMovimiento", new { Id = Model.Id, FormMethod.Post }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eiminar" class="btn btn-primary" /> |
+            @Html.ActionLink("Atrás", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>

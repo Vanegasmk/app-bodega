@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Infraestructure.Models.Movimientos>
+@{
+    ViewBag.Title = "ReporteMayorCantidadSalidas";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="d-flex flex-row">
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte de salidas", "ReportesSalidas", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte de entradas", "Index", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte de mayor salidas", "ReporteMayorCantidadSalidas", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte PDF", "CreatePDFMayorCantidadSalidas", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Proveedor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_TipoMovimiento)
+        </th>
+        <th>
+            Cantidad de productos despachados
+        </th>
+
+        <th>
+            Cantidad de salidas
+            registradas
+        </th>
+        <th></th>
+    </tr>
+
+    <tbody id="resultado">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto.Nombre)
+                </td>
+
+                <td>
+                    @foreach (var c in item.Producto.Proveedor)
+                    {
+
+                        <li>
+                            @c.Nombre
+                        </li>
+
+                    }
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoMovimiento.Tipo)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

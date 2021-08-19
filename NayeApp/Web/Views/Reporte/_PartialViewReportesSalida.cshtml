@@ -1,0 +1,60 @@
+﻿
+
+@model IEnumerable<Infraestructure.Models.Movimientos>
+
+
+@{
+    if (Model != null)
+    {
+        @Html.ActionLink("Reporte PDF", "CreatePdfSalidas", "Reporte", new { date1 = ViewBag.date1, date2 = ViewBag.date2 }, new { @class = "btn btn-primary" })
+    }
+}
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comentario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producto.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                ₡@Html.DisplayFor(modelItem => item.Producto.Precio)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMovimiento.Tipo)
+            </td>
+
+            <td>
+                @foreach (var c in item.Producto.Proveedor)
+                {
+
+                    <li>
+                        @c.Nombre
+                    </li>
+
+                }
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Creado)
+            </td>
+
+            <td>
+                ₡ @Html.DisplayFor(modelItem => item.Total)
+            </td>
+
+        </tr>
+    }
+</div>

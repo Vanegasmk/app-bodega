@@ -1,0 +1,45 @@
+﻿@model Infraestructure.Models.Categoria
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+
+
+<h3>Quieres eliminarlo?</h3>
+<div>
+    <h4>Categoría</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("DeleteCategoria", "Categoria", new { Id = Model.Id, FormMethod.Post }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-primary" /> |
+            @Html.ActionLink("Atrás", "Index", null, new { @class = "btn btn-primary" })
+        </div>
+    }
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/sweetalert")
+}

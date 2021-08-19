@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Infraestructure.Models.Movimientos>
+@{
+    ViewBag.Title = "ReportesSalidas";
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+}
+
+<div class="d-flex flex-row">
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte de salidas", "ReportesSalidas", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte de entradas", "Index", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+    <div class="p-2 px-2">
+        @Html.ActionLink("Reporte de mayor salidas", "ReporteMayorCantidadSalidas", "Reporte", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+
+
+
+<div class="row">
+    @using (Ajax.BeginForm("ReportesSalidasPartial", "Reporte", new AjaxOptions
+    {
+        UpdateTargetId = "resultado",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET",
+        LoadingElementId = "ajaxLoader"
+    }))
+    {
+        <div class="card-body">
+            <div class="input-group">
+                @Html.TextBox("date1", "", new { @class = "form-control", type = "date", id = "date1" })
+                @Html.TextBox("date2", "", new { @class = "form-control", type = "date", id = "date2" })
+                <button type="submit" class="btn btn-primary">Buscar</button>
+
+            </div>
+        </div>
+    }
+
+
+
+</div>
+
+<div id="ajaxLoader" class="center-block" alt="Cargando ..." style="height:100px;width:100px; display:none">
+    <img src="~/Images/loading.gif" />
+</div>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Comentario)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Precio)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_TipoMovimiento)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Producto.Proveedor)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Usuario)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Creado)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+
+        <th></th>
+    </tr>
+
+    <tbody id="resultado">
+    </tbody>
+
+</table>

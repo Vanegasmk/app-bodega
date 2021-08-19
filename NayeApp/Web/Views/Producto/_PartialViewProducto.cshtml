@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Infraestructure.Models.Producto>
+
+
+
+
+<div  class="row">
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Detalle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Precio)
+        </td>
+        <td>
+            @if (item.Unidades <= 5)
+            {
+                <span class="badge bg-danger">
+                    Bajo en stock - @Html.DisplayFor(modelItem => item.Unidades) unidades
+                </span>
+            }
+            else
+            {
+                @Html.DisplayFor(modelItem => item.Unidades)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Creado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bodega.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-secondary" }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+        </td>
+
+    </tr>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

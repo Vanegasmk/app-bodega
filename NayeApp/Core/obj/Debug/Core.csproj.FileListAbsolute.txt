@@ -1,0 +1,14 @@
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\Core.dll
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\Core.pdb
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\Infraestructure.dll
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\Infraestructure.pdb
+D:\Dev\NayeApp\NayeApp\Core\obj\Debug\Core.csproj.AssemblyReference.cache
+D:\Dev\NayeApp\NayeApp\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+D:\Dev\NayeApp\NayeApp\Core\obj\Debug\Core.csproj.CopyComplete
+D:\Dev\NayeApp\NayeApp\Core\obj\Debug\Core.dll
+D:\Dev\NayeApp\NayeApp\Core\obj\Debug\Core.pdb
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\EntityFramework.dll
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\Infraestructure.dll.config
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\EntityFramework.xml
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\log4net.dll
+D:\Dev\NayeApp\NayeApp\Core\bin\Debug\log4net.xml

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+</head>
+<style>
+    
+
+    .btn-primary,
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:visited,
+    .btn-primary:focus {
+        background-color: #80bbd2;
+        border-color: #80bbd2;
+    }
+
+    .btn-danger,
+    .btn-danger:hover,
+    .btn-danger:active,
+    .btn-danger:visited,
+    .btn-danger:focus {
+        background-color: #e84848;
+        border-color: #e84848;
+    }
+
+    .btn-warning,
+    .btn-warning:hover,
+    .btn-warning:active,
+    .btn-warning:visited,
+    .btn-warning:focus {
+        background-color: #253848;
+        border-color: #253848;
+    }
+
+
+</style>
+
+
+<body class="text-center" style="background-color: #e4e8e8;">
+
+    <main class="form-signin">
+        <h1 class="h3 mb-3 fw-normal">Neye Store</h1>
+        @RenderBody()
+    </main>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("scripts", required: false)
+    @if(ViewBag.NotificationMessage != null)
+    {
+        <script>
+            @Html.Raw(ViewBag.NotificationMessage)
+        </script>
+    }
+</body>
+</html>
